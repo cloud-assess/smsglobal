@@ -65,7 +65,7 @@ module SmsGlobal
       if params
         url.query = params.map { |k,v| "%s=%s" % [CGI.escape(k.to_s), CGI.escape(v.to_s)] }.join("&")
       end
-      res = HTTP.start(url.host, url.port, read_timeout: 5) do |http|
+      res = HTTP.start(url.host, url.port, read_timeout: 5, use_ssl: true) do |http|
         http.get(url.request_uri)
       end
     end
